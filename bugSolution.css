@@ -1,0 +1,28 @@
+One approach is to refactor the CSS to avoid specificity conflicts by creating a more general rule and making sure that only one rule applies to each state of your classes:
+
+```css
+#container {
+  width: 500px;
+}
+
+.box {
+  width: 300px;
+}
+
+#container .box {
+  width: 400px; /* This rule is intended to override the others */
+}
+
+/*Avoid using many classes that specify the same state. If possible, use one class to cover all the states. */
+.box.special { /* This class overrides the container box class */
+  width: 200px;
+}
+```
+
+Alternatively (though generally less preferred), the `!important` flag can be used, but this is usually not advised as it can make CSS harder to maintain and debug:
+
+```css
+#container .box {
+  width: 400px !important; /* Forces this rule to override other rules */
+}
+```
