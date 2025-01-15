@@ -1,0 +1,23 @@
+The following CSS code snippet demonstrates a common issue where specificity conflicts can lead to unexpected styling results:
+
+```css
+#container {
+  width: 500px;
+}
+
+.box {
+  width: 300px;
+}
+
+#container .box {
+  width: 400px; /* This rule is intended to override the others */
+}
+
+/* ... more CSS rules */
+
+#container .box.special {
+  width: 200px; /* This rule has higher specificity than the above */
+}
+```
+
+The issue is that while the rule `#container .box` targets a `.box` element within `#container` intending to override the `width: 300px` and `width: 500px` rules, the rule `#container .box.special` has higher specificity because it includes the additional class `special`.  This means that when both classes are used, the rule with higher specificity will take precedence.
